@@ -5,13 +5,67 @@
 {% from "account/_helpers.html" import render_pagination %}
 
 {% block content %}
-<div class="container">
+<style>
+.targetEle {
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+</style>
+<script>
+
+//This CODE is not good Ill find a better way or place to manage this logic
+//This is what make the UI full screen and change columns sizes
+ var main = function() {
+ var slide = $('.targetEle');
+ var press = $('#expandButton');
+ 
+ press.click(function() {
+     
+    var element = document.getElementById("main-container");
+    if(element.classList.contains("container-fluid")){
+        element.classList =[];
+        element.classList.toggle("container");
+        element = document.getElementById("menu");
+        console.log(element)
+        element.classList =[];
+        element.classList.toggle("col-md-3");
+        element = document.getElementById("container-content");
+        console.log(element)
+        element.classList =[];
+        element.classList.toggle("col-md-9");
+    } else {
+        element.classList =[];
+        element.classList.toggle("container-fluid");
+        element = document.getElementById("menu");
+        element.classList =[];
+        element.classList.toggle("col-md-0");
+        element = document.getElementById("mirror");
+        element.classList =[];
+        element.classList.toggle("col-md-6");
+        element = document.getElementById("editorpybossa");
+        element.classList =[];
+        element.classList.toggle("col-md-6");
+        element = document.getElementById("container-content");
+        element.classList =[];
+        element.classList.toggle("col-md-12");
+    }
+    
+    slide.toggle('slow');            
+ });
+}
+
+$(document).ready(main);
+</script>       
+<div class="container" id="main-container">
     {% if project %}
-    <div class="col-sm-3 col-md-3" style="margin-top:50px;">
-        {{ helper.render_project_local_nav(project, active_link, current_user, pro_features, upload_method) }}
+    <div id ="menu" class="col-sm-3 col-md-3" style="margin-top:50px;">
+            <div class="targetEle">
+            {{ helper.render_project_local_nav(project, active_link, current_user, pro_features, upload_method) }}
+            </div>
     </div>
     <!-- Project -->
-    <div class="col-sm-9 col-md-9" style="min-height:400px;margin-top:50px;">
+    <div id="container-content" class="col-sm-9 col-md-9" style="min-height:400px;margin-top:50px;">
         <div class="row">
             <div class="col-sm-8 col-md-8">
                 <h1>{{project.name}}</h1>

@@ -27,36 +27,45 @@
     }
 </style>
 <!-- Task Presenter Editor -->
-<div class="row">
-    <div class="col-md-12 text-center">
+        <div class="col-md-10">
+                <button id = "expandButton" class="btn btn-primary" type="button">
+                        <i class="fa fa-expand"></i>
+                 </button>
+        </div>
+
+    <div class="col-md-0 col-md-offset-1 text-right">
         <a class="btn btn-info" href="http://docs.pybossa.com/user/overview/#creating-the-task-presenter_1"><i class="fa fa-book"></i> {{ _('Help') }}</a></h1>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <h2>Task Presenter</h2>
-        <form class="col-md-12" method="post" action="{{ url_for('project.task_presenter_editor', short_name=project.short_name) }}">
-            {{ form.hidden_tag() }}
-            <fieldset>
-                {{ render_field(form.editor)}}
-                <div class="form-actions">
-                    {% if disable_editor %}
-                    <input type="submit" value={{ _('Update the project task presenter') }} class="btn btn-primary" disabled />
-                    {% else %}
-                    <input type="submit" value={{ _('Update the project task presenter') }} class="btn btn-primary" />
-                    {% endif %}
-                    <a href="#" class="btn btn-default btn-preview" value="preview">{{ _('Preview the task presenter') }}</a>
-                    {% if current_user.admin or current_user.subadmin %}
-                        <a href="{{url_for('project.tasks', short_name=project.short_name)}}" class="btn btn-warning">{{ _('Cancel') }}</a>
-                    {% else %}
-                        <a href="{{url_for('project.settings', short_name=project.short_name)}}" class="btn btn-warning">{{ _('Cancel') }}</a>
-                    {% endif %}
-                </div>
-            </fieldset>
-        </form>
-    </div>
-</div>
+        
+            <h2>Task Presenter</h2>
+            <div class="row ">
 
+            <form   id="mirror" class="col-md-8 col-xs-8" method="post" action="{{ url_for('project.task_presenter_editor', short_name=project.short_name) }}">
+                {{ form.hidden_tag() }}
+                <fieldset>
+                    {{ render_field(form.editor)}}
+                    <div class="form-actions">
+                        {% if disable_editor %}
+                        <input type="submit" value={{ _('Update the project task presenter') }} class="btn btn-primary" disabled />
+                        {% else %}
+                        <input type="submit" value={{ _('Update the project task presenter') }} class="btn btn-primary" />
+                        {% endif %}
+                        <a href="#" class="btn btn-default btn-preview" value="preview">{{ _('Preview the task presenter') }}</a>
+                        {% if current_user.admin or current_user.subadmin %}
+                            <a href="{{url_for('project.tasks', short_name=project.short_name)}}" class="btn btn-warning">{{ _('Cancel') }}</a>
+                        {% else %}
+                            <a href="{{url_for('project.settings', short_name=project.short_name)}}" class="btn btn-warning">{{ _('Cancel') }}</a>
+                        {% endif %}
+                    </div>
+                </fieldset>
+            </form>
+        <div id="editorpybossa" class="col-md-4 col-xs-4">
+        </br>
+            <Builder/>
+        </div>
+    </div>
+
+ 
 <div class="row">
     <div class="col-md-12">
         <h2>Latest GitHub Push Info</h2>
@@ -160,6 +169,8 @@
               'vendor/codemirror/addons/dialog/dialog.js'
               %}
               <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+              <script src="/static/js/gen/editor.min.js?fb8c614d3ea9f6a54dfc"></script>
+
     {% endassets %}
 <script type="text/javascript">
 (function() {
@@ -201,7 +212,7 @@
      "<body style=\"padding-top:0px;\">\n\t\n\t" +
      "<script type=\"text/javascript\" src=\""+pybossa+"\"></sc" + "ript>" +
      "<script type=\"text/javascript\" src=\""+defaultJs+"\"></sc" + "ript>" +
-     "<div class=\"container project col-md-12\">" +
+        "<div class=\"container project col-md-12\">" +
      "<div class=\"project-content row\">" +
      presenterSource +
      "</div>" +
