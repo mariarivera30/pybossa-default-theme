@@ -68,12 +68,13 @@ module.exports = {
           hash: true,
           filename: '../../templates/admin/new_announcement.html',
           template: '../../templates/admin/new_announcement.webpack'
-        }),
-        new htmlWebpackPlugin({
-          inject: false,
-          hash: true,
-          filename: '../../templates/projects/ComponentBuilder.html',
-          template: '../../templates/projects/ComponentBuilder.webpack'
         })
+        // ,
+        // new htmlWebpackPlugin({
+        //   inject: false,
+        //   hash: true,
+        //   filename: '../../templates/projects/ComponentBuilder.html',
+        //   template: '../../templates/projects/ComponentBuilder.webpack'
+        // })
     ]
 }
