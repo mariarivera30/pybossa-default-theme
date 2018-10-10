@@ -59,9 +59,8 @@
                     </div>
                 </fieldset>
             </form>
-        <div id="editorpybossa" class="col-md-4 col-xs-4">
-        </br>
-            <Builder/>
+        <div class="col-md-4 col-xs-4">
+        {% include 'projects/ComponentBuilder.html' %}
         </div>
     </div>
 
@@ -169,7 +168,7 @@
               'vendor/codemirror/addons/dialog/dialog.js'
               %}
               <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-              <script src="/static/js/gen/editor.min.js?fb8c614d3ea9f6a54dfc"></script>
+              <!-- <script src="/static/js/gen/editor.min.js?fb8c614d3ea9f6a54dfc"></script> -->
 
     {% endassets %}
 <script type="text/javascript">
